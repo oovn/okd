@@ -36,7 +36,7 @@ if [ ! -f /etc/yum.repos.d/origin.repo ]; then
 	cd
 fi
 yum update -y
-yum -y install atomic-openshift-utils openshift-ansible ansible pyOpenSSL python-cryptography python-lxml
+yum -y install atomic-openshift-utils openshift-ansible ansible pyOpenSSL python-cryptography python-lxml java-1.8.0-openjdk-headless httpd-tools
 # openshift-ansible
 [ ! -d openshift-ansible ] && git clone https://github.com/openshift/openshift-ansible.git
 cd openshift-ansible && git fetch && git checkout release-${VERSION} && cd ..
