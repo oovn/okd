@@ -22,6 +22,12 @@ if $INTERACTIVE ; then
 	fi
 	echo
 fi
+#ssh
+if [ ! -f ~/.ssh/id_rsa ]; then
+	ssh-keygen -q -f ~/.ssh/id_rsa -N ""
+	cat ~/.ssh/id_rsa.pub >> ~/.ssh/authorized_keys
+	ssh -o StrictHostKeyChecking=no root@$IP "pwd" < /dev/null
+fi
 # install the following base packages
 if [ ! -f /etc/yum.repos.d/origin.repo ]; then
 	yum install -y  wget nano
