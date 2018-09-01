@@ -54,25 +54,22 @@ cat <<EOD > ./${DOMAIN}.ini
 masters
 nodes
 etcd
-nfs
 [masters]
 ${DOMAIN}
 [etcd]
-${DOMAIN}
-[nfs]
 ${DOMAIN}
 [nodes]
 ${DOMAIN} openshift_node_group_name="node-config-all-in-one" 
 [OSEv3:vars]
 ansible_ssh_user=root
 openshift_deployment_type=origin
-#openshift_public_hostname=${DOMAIN}
+openshift_public_hostname=${DOMAIN}
 openshift_master_default_subdomain=${DOMAIN}
 os_sdn_network_plugin_name='redhat/openshift-ovs-multitenant'
 osm_use_cockpit=True
 containerized=True
 #openshift_master_cluster_method=native
-openshift_master_cluster_hostname=${DOMAIN}
+#openshift_master_cluster_hostname=${DOMAIN}
 #openshift_master_cluster_public_hostname=${DOMAIN}
 #openshift_master_ca_certificate={'cafile':'/root/$DOMAIN/ca.cer','certfile':'/root/$DOMAIN/$DOMAIN.cer','keyfile':'/root/$DOMAIN/$DOMAIN.key'}
 #openshift_master_overwrite_named_certificates=true
