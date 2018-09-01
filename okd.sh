@@ -68,7 +68,7 @@ openshift_master_default_subdomain=${DOMAIN}
 #openshift_master_cluster_method=native
 #openshift_master_cluster_hostname=${DOMAIN}
 #openshift_master_cluster_public_hostname=${DOMAIN}
-
+#openshift_master_ca_certificate={'cafile':'/root/$DOMAIN/ca.cer','certfile':'/root/$DOMAIN/$DOMAIN.cer','keyfile':'/root/$DOMAIN/$DOMAIN.key'}
 #openshift_master_overwrite_named_certificates=true
 #openshift_master_named_certificates=[{'cafile':'/root/$DOMAIN/ca.cer','certfile':'/root/$DOMAIN/$DOMAIN.cer','keyfile':'/root/$DOMAIN/$DOMAIN.key','name':['${DOMAIN}']}]
 #openshift_hosted_router_certificate={'cafile':'/root/$DOMAIN/ca.cer','certfile':'/root/$DOMAIN/$DOMAIN.cer','keyfile':'/root/$DOMAIN/$DOMAIN.key'}
