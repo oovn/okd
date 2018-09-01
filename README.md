@@ -10,6 +10,6 @@ vn.lamit.win > cname
 
 *.vn.lamit.win > cname
 
-#run
+#dns giam 1 sub
 
-*.lamit.win > LanIP
+*.lamit.win > WanIP
