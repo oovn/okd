@@ -47,7 +47,7 @@ cat <<EOD > /etc/hosts
 ${IP}		${DOMAIN} 
 EOD
 # add ${DOMAIN}.ini
-echo "#addauto" > ${DOMAIN}.ini
+echo "#auto" > ${DOMAIN}.ini
 cat <<EOD > ./${DOMAIN}.ini
 #autogen ${DOMAIN}.ini
 [OSEv3:children]
@@ -55,24 +55,23 @@ masters
 nodes
 etcd
 [masters]
-sg-${DOMAIN}
+${DOMAIN}
 [etcd]
-sg-${DOMAIN}
+${DOMAIN}
 [nodes]
-sg-${DOMAIN} openshift_node_group_name="node-config-all-in-one" 
+${DOMAIN} openshift_node_group_name="node-config-all-in-one" 
 [OSEv3:vars]
 ansible_ssh_user=root
 openshift_deployment_type=origin
-openshift_public_hostname=${DOMAIN}
+#openshift_public_hostname=${DOMAIN}
 openshift_master_default_subdomain=${DOMAIN}
 #openshift_master_cluster_method=native
-#openshift_master_cluster_hostname=${DOMAIN}
+openshift_master_cluster_hostname=${DOMAIN}
 #openshift_master_cluster_public_hostname=${DOMAIN}
 #openshift_master_ca_certificate={'cafile':'/root/$DOMAIN/ca.cer','certfile':'/root/$DOMAIN/$DOMAIN.cer','keyfile':'/root/$DOMAIN/$DOMAIN.key'}
 #openshift_master_overwrite_named_certificates=true
 #openshift_master_named_certificates=[{'cafile':'/root/$DOMAIN/ca.cer','certfile':'/root/$DOMAIN/$DOMAIN.cer','keyfile':'/root/$DOMAIN/$DOMAIN.key','name':['${DOMAIN}']}]
 #openshift_hosted_router_certificate={'cafile':'/root/$DOMAIN/ca.cer','certfile':'/root/$DOMAIN/$DOMAIN.cer','keyfile':'/root/$DOMAIN/$DOMAIN.key'}
-
 openshift_master_identity_providers=[{'name':'htpasswd_auth','login':'true','challenge':'true','kind':'HTPasswdPasswordIdentityProvider'}]
 openshift_disable_check=disk_availability,docker_storage,memory_availability,docker_image_availability
 openshift_metrics_install_metrics=true
