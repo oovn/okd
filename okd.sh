@@ -44,7 +44,7 @@ cd openshift-ansible && git fetch && git checkout release-${VERSION} && cd ..
 cat <<EOD > /etc/hosts
 127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
 ::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
-${IP}		${DOMAIN} 
+${IP}		sg.${DOMAIN} ocp.${DOMAIN}
 EOD
 # add ${DOMAIN}.ini
 echo "#auto" > ${DOMAIN}.ini
@@ -55,22 +55,22 @@ masters
 nodes
 etcd
 [masters]
-${DOMAIN}
+sg.${DOMAIN}
 [etcd]
-${DOMAIN}
+sg.${DOMAIN}
 [nodes]
-${DOMAIN} openshift_node_group_name="node-config-all-in-one" 
+sg.${DOMAIN} openshift_node_group_name="node-config-all-in-one" 
 [OSEv3:vars]
 ansible_ssh_user=root
 openshift_deployment_type=origin
-openshift_public_hostname=${DOMAIN}
-openshift_master_default_subdomain=${DOMAIN}
+#openshift_public_hostname=ocp.${DOMAIN}
+openshift_master_default_subdomain=okd.${DOMAIN}
 os_sdn_network_plugin_name='redhat/openshift-ovs-multitenant'
 osm_use_cockpit=True
 containerized=True
-#openshift_master_cluster_method=native
-#openshift_master_cluster_hostname=${DOMAIN}
-#openshift_master_cluster_public_hostname=${DOMAIN}
+openshift_master_cluster_method=native
+openshift_master_cluster_hostname=ocp.${DOMAIN}
+openshift_master_cluster_public_hostname=ocp.${DOMAIN}
 #openshift_master_ca_certificate={'cafile':'/root/$DOMAIN/ca.cer','certfile':'/root/$DOMAIN/$DOMAIN.cer','keyfile':'/root/$DOMAIN/$DOMAIN.key'}
 #openshift_master_overwrite_named_certificates=true
 #openshift_master_named_certificates=[{'cafile':'/root/$DOMAIN/ca.cer','certfile':'/root/$DOMAIN/$DOMAIN.cer','keyfile':'/root/$DOMAIN/$DOMAIN.key','name':['${DOMAIN}']}]
